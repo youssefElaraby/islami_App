@@ -3,6 +3,7 @@ import 'package:islami/hadeth/hadeth_tap.dart';
 import 'package:islami/quran/quran_tap.dart';
 import 'package:islami/sepha/sepha_tap.dart';
 import 'package:islami/settings/settings_tap.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../radio/radio_tap.dart';
 
@@ -35,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
           appBar: AppBar(
             elevation: 0,
             title: Text(
-              'اسلامي ',
+              AppLocalizations.of(context)!.app_title,
               //دي علشان لما اجي اخد Themeمن فايل تاني
               //علشان الاستيل بدل ما افضل اكررر
               style: Theme.of(context).textTheme.bodyLarge,
@@ -60,22 +61,25 @@ class _HomeScreenState extends State<HomeScreen> {
                 setState(() {});
               },
 
-              items: const [
+              items: [
                 BottomNavigationBarItem(
                     icon: ImageIcon(AssetImage('assets/images/quran.png')),
-                    label: 'القرأن'),
+                  label: AppLocalizations.of(context)!.quran,
+                ),
                 BottomNavigationBarItem(
                     icon: ImageIcon(AssetImage(
                         'assets/images/quran-quran-svgrepo-com.png')),
-                    label: 'الحديث'),
+                  label: AppLocalizations.of(context)!.hadeth,
+                ),
                 BottomNavigationBarItem(
                     icon: ImageIcon(AssetImage('assets/images/sebha_blue.png')),
-                    label: 'السبحه'),
+                    label: AppLocalizations.of(context)!.sepha),
                 BottomNavigationBarItem(
                     icon: ImageIcon(AssetImage('assets/images/radio.png')),
-                    label: 'الراديو'),
+                    label: AppLocalizations.of(context)!.radio),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.settings), label: 'الاعدادت'),
+                    icon: Icon(Icons.settings),
+                    label: AppLocalizations.of(context)!.settings),
               ],
             ),
           ),

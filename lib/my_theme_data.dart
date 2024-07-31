@@ -9,10 +9,12 @@ class MyThemeData {
     scaffoldBackgroundColor: Colors.transparent,
     appBarTheme: const AppBarTheme(
       iconTheme: IconThemeData(color: Colors.black),
-      backgroundColor: Colors.transparent,
       //دي بتخلي الاب بار شفاف بس بيكون فيه حتته غمقان
-      elevation: 0,
+      backgroundColor: Colors.transparent,
+
       //دي بتشيل حته الغمقان الفي الاب بار
+      elevation: 0,
+
       centerTitle: true,
       titleTextStyle: TextStyle(
         color: Colors.black,
@@ -31,7 +33,11 @@ class MyThemeData {
         fontSize: 23,
         fontWeight: FontWeight.w700,
       ),
-      bodySmall: TextStyle(),
+      bodySmall: TextStyle(
+        color: AppColors.blackColor,
+        fontSize: 18,
+        fontWeight: FontWeight.w500,
+      ),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColors.primaryLightColor,
@@ -51,6 +57,7 @@ class MyThemeData {
     primaryColor: AppColors.primaryDarkColor,
     scaffoldBackgroundColor: Colors.transparent,
     appBarTheme: const AppBarTheme(
+      iconTheme: IconThemeData(color: AppColors.whiteColor),
       backgroundColor: Colors.transparent,
       centerTitle: true,
       titleTextStyle: TextStyle(
@@ -60,18 +67,28 @@ class MyThemeData {
       ),
       elevation: 0,
     ),
-    textTheme: const TextTheme(
+    textTheme: TextTheme(
       bodyLarge: TextStyle(
         color: AppColors.blackColor,
-        fontSize: 30,
+        fontSize: 10,
         fontWeight: FontWeight.bold,
       ),
-      bodyMedium: TextStyle(),
-      displaySmall: TextStyle(),
+      bodyMedium: TextStyle(
+        color: AppColors.blackColor,
+        fontSize: 23,
+        fontWeight: FontWeight.w700,
+      ),
+      bodySmall: TextStyle(
+        color: AppColors.blackColor,
+        fontSize: 18,
+        fontWeight: FontWeight.w500,
+      ),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColors.primaryDarkColor,
-      showUnselectedLabels: true,
+      selectedItemColor: AppColors.yellowColor,
+
+      // showUnselectedLabels: true,
       selectedIconTheme: IconThemeData(
         size: 40,
       ),
