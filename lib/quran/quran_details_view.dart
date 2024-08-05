@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami/quran/widget/sura_title_widget.dart';
+import 'package:provider/provider.dart';
+
+import '../colors_App.dart';
+import '../providers/app_config_provider.dart';
 
 class QuranDetailsView extends StatefulWidget {
   static const String routeName = 'QuranDetailsView';
@@ -14,6 +18,8 @@ class QuranDetailsView extends StatefulWidget {
 class _QuranDetailsViewState extends State<QuranDetailsView> {
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
+
     //مسؤل عن ان الاسم ينبعت من اسكرينه ل اسكرينه اخري
     var data = ModalRoute.of(context)?.settings.arguments as SuraData;
 
@@ -24,9 +30,13 @@ class _QuranDetailsViewState extends State<QuranDetailsView> {
       loadData(data.suraNumber);
     }
     return Container(
+      width: double.infinity,
+      height: double.infinity,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/background1x (1).png'),
+          image: AssetImage(provider.isDarkMode()
+              ? 'assets/images/dark_bg.png'
+              : 'assets/images/background1x (1).png'),
           fit: BoxFit.fill,
         ),
       ),
@@ -41,27 +51,41 @@ class _QuranDetailsViewState extends State<QuranDetailsView> {
           padding: EdgeInsets.only(top: 30, bottom: 50, left: 30, right: 30),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              color: Theme.of(context).primaryColor.withOpacity(0.3)),
+              color: provider.isDarkMode()
+                  ? AppColors.primaryDarkColor.withOpacity(0.8)
+                  : Theme.of(context).primaryColor.withOpacity(0.3)),
           child: Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('سوره ${data.suraName}',
-                      style: Theme.of(context).textTheme.bodyMedium),
+                      style: TextStyle(
+                          color: provider.isDarkMode()
+                              ? AppColors.yellowColor
+                              : AppColors.blackColor)),
                   const SizedBox(width: 10),
-                  Icon(Icons.play_circle),
+                  Icon(
+                    Icons.play_circle,
+                    color: provider.isDarkMode()
+                        ? AppColors.yellowColor
+                        : AppColors.blackColor,
+                  ),
                 ],
               ),
               Divider(
                 thickness: 2,
-                color: Theme.of(context).primaryColor,
+                color: provider.isDarkMode()
+                    ? AppColors.yellowColor
+                    : AppColors.primaryLightColor,
               ),
               Expanded(
                 child: ListView.builder(
                   itemBuilder: (context, index) => Text(
-                      "${{index + 1}}${versesList[index]}",
-                      textAlign: TextAlign.center),
+                    "${{index + 1}}${versesList[index]}",
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
                   itemCount: versesList.length,
                 ),
               ),

@@ -19,7 +19,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<AppConfigProvider>(context);
+    var provider1 = Provider.of<AppConfigProvider>(context);
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -32,10 +32,10 @@ class MyApp extends StatelessWidget {
       },
       theme: MyThemeData.lightMode,
       darkTheme: MyThemeData.darkMode,
-      themeMode: provider.appTheme,
+      themeMode: provider1.appTheme,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      locale: Locale(provider.applanguage),
+      locale: Locale(provider1.applanguage),
     );
   }
 }

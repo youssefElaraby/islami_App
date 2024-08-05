@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami/hadeth/widget/item_hadeth_name_bottom.dart';
+import 'package:provider/provider.dart';
 
 import '../colors_App.dart';
+import '../providers/app_config_provider.dart';
 
 class HadethTap extends StatefulWidget {
   @override
@@ -14,6 +16,8 @@ class _HadethTapState extends State<HadethTap> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
+
     if (ahadethList.isEmpty) {
       loadHadethFile();
     }
@@ -23,12 +27,16 @@ class _HadethTapState extends State<HadethTap> {
         children: [
           Image.asset('assets/images/hadith_header.png'),
           Divider(
-            color: AppColors.primaryLightColor,
+            color: provider.isDarkMode()
+                ? AppColors.yellowColor
+                : AppColors.primaryLightColor,
             thickness: 3,
           ),
           Text('الاحاديث', style: Theme.of(context).textTheme.bodyMedium),
           Divider(
-            color: AppColors.primaryLightColor,
+            color: provider.isDarkMode()
+                ? AppColors.yellowColor
+                : AppColors.primaryLightColor,
             thickness: 3,
           ),
           Expanded(
@@ -46,7 +54,9 @@ class _HadethTapState extends State<HadethTap> {
                         separatorBuilder: (context, index) {
                           return Divider(
                             thickness: 2,
-                            color: AppColors.primaryLightColor,
+                            color: provider.isDarkMode()
+                                ? AppColors.yellowColor
+                                : AppColors.primaryLightColor,
                           );
                         },
                         itemBuilder: (context, index) {

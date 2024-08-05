@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islami/hadeth/hadeth_tap.dart';
+import 'package:islami/providers/app_config_provider.dart';
 import 'package:islami/quran/quran_tap.dart';
 import 'package:islami/sepha/sepha_tap.dart';
 import 'package:islami/settings/settings_tap.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 import '../radio/radio_tap.dart';
 
@@ -21,9 +23,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     return Stack(
       children: [
-        Image.asset(
+        provider.isDarkMode()
+            ? Image.asset(
+                'assets/images/dark_bg.png',
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.fill,
+              )
+            : Image.asset(
           'assets/images/background1x (1).png',
           width: double.infinity,
           height: double.infinity,

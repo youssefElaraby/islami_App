@@ -5,6 +5,8 @@ class AppConfigProvider extends ChangeNotifier {
   ThemeMode appTheme = ThemeMode.light;
 
   void changeLanguage(String newLanguage) {
+    print("Changing theme to: $newLanguage");
+
     if (applanguage == newLanguage) {
       return;
     }
@@ -13,6 +15,7 @@ class AppConfigProvider extends ChangeNotifier {
   }
 
   void changeTheme(ThemeMode newMode) {
+    print("Changing theme to: $newMode");
     if (appTheme == newMode) {
       return;
     }

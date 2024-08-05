@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:islami/colors_App.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/app_config_provider.dart';
 
 class SephaTap extends StatefulWidget {
   @override
@@ -20,6 +23,8 @@ class _SephaTapState extends State<SephaTap> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
+
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Container(
@@ -29,10 +34,12 @@ class _SephaTapState extends State<SephaTap> {
             child: Stack(
               alignment: Alignment.topCenter,
               children: [
-                Image.asset('assets/images/head of seb7a.png'),
+                Image.asset(provider.isDarkMode()
+                    ? 'assets/images/head_sebha_dark.png'
+                    : 'assets/images/head of seb7a.png'),
                 // SizedBox(height: 20,),
                 Padding(
-                  padding: const EdgeInsets.all(35.0),
+                  padding: EdgeInsets.all(provider.isDarkMode() ? 70.0 : 35.0),
                   child: Transform.rotate(
                     angle: angle,
                     child: InkWell(
@@ -42,7 +49,9 @@ class _SephaTapState extends State<SephaTap> {
 
                         setState(() {});
                       },
-                      child: Image.asset('assets/images/body of seb7a-1.png'),
+                      child: Image.asset(provider.isDarkMode()
+                          ? 'assets/images/body_sebha_dark.png'
+                          : 'assets/images/body of seb7a-1.png'),
                     ),
                   ),
                 ),
@@ -56,11 +65,16 @@ class _SephaTapState extends State<SephaTap> {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30.0),
-                  color: AppColors.primaryLightColor,
+                  color: provider.isDarkMode()
+                      ? AppColors.primaryDarkColor
+                      : AppColors.primaryLightColor,
                 ),
                 // height: 95,
                 width: screenWidth * 0.3,
-                child: Center(child: Text('$counter')),
+                child: Center(
+                    child: Text(
+                  '$counter',
+                )),
               ),
             ),
           ),
@@ -74,11 +88,20 @@ class _SephaTapState extends State<SephaTap> {
                 padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30.0),
-                  color: AppColors.primaryLightColor,
+                  color: provider.isDarkMode()
+                      ? AppColors.yellowColor
+                      : AppColors.primaryLightColor,
                 ),
                 // height: 95,
                 width: screenWidth * 0.6,
-                child: Center(child: Text('${azkar[index]}')),
+                child: Center(
+                    child: Text(
+                  '${azkar[index]}',
+                  style: TextStyle(
+                      color: provider.isDarkMode()
+                          ? AppColors.primaryDarkColor
+                          : AppColors.blackColor),
+                )),
               ),
             ),
           ),

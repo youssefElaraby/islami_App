@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:islami/colors_App.dart';
 import 'package:islami/hadeth/hadeth_tap.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/app_config_provider.dart';
 
 class HadethDetailsView extends StatelessWidget {
   static const String routeName = 'HadethDetailsView';
@@ -8,6 +12,8 @@ class HadethDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
+
     //مسؤل عن ان الاسم ينبعت من اسكرينه ل اسكرينه اخري
     var receivedData = ModalRoute.of(context)?.settings.arguments as HadethData;
     //async
@@ -17,7 +23,9 @@ class HadethDetailsView extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/background1x (1).png'),
+          image: AssetImage(provider.isDarkMode()
+              ? 'assets/images/dark_bg.png'
+              : 'assets/images/background1x (1).png'),
           fit: BoxFit.fill,
         ),
       ),
@@ -34,25 +42,36 @@ class HadethDetailsView extends StatelessWidget {
           padding: EdgeInsets.only(top: 30, bottom: 50, left: 30, right: 30),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              color: Theme.of(context).primaryColor.withOpacity(0.3)),
+              color: Theme.of(context).primaryColor.withOpacity(0.8)),
           child: Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(receivedData.title,
-                      style: Theme.of(context).textTheme.bodyMedium),
+                    style: TextStyle(
+                        color: provider.isDarkMode()
+                            ? AppColors.yellowColor
+                            : AppColors.blackColor),
+                  ),
                 ],
               ),
               Divider(
                 thickness: 2,
-                color: Theme.of(context).primaryColor,
+                color: provider.isDarkMode()
+                    ? AppColors.yellowColor
+                    : AppColors.primaryLightColor,
               ),
 
               Expanded(
                 child: ListView.builder(
-                  itemBuilder: (context, index) =>
-                      Text(receivedData.content[index]),
+                  itemBuilder: (context, index) => Text(
+                    receivedData.content[index],
+                    style: TextStyle(
+                        color: provider.isDarkMode()
+                            ? AppColors.yellowColor
+                            : AppColors.blackColor),
+                  ),
                   itemCount: receivedData.content.length,
                 ),
               ),

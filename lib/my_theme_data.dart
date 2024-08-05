@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:islami/colors_App.dart';
 
 class MyThemeData {
@@ -23,17 +24,17 @@ class MyThemeData {
       ),
     ),
     textTheme: TextTheme(
-      bodyLarge: TextStyle(
+      bodyLarge: GoogleFonts.elMessiri(
         color: AppColors.blackColor,
         fontSize: 30,
         fontWeight: FontWeight.bold,
       ),
-      bodyMedium: TextStyle(
+      bodyMedium: GoogleFonts.elMessiri(
         color: AppColors.blackColor,
         fontSize: 23,
         fontWeight: FontWeight.w700,
       ),
-      bodySmall: TextStyle(
+      bodySmall: GoogleFonts.elMessiri(
         color: AppColors.blackColor,
         fontSize: 18,
         fontWeight: FontWeight.w500,
@@ -61,26 +62,31 @@ class MyThemeData {
       backgroundColor: Colors.transparent,
       centerTitle: true,
       titleTextStyle: TextStyle(
-        color: Colors.black,
-        fontSize: 30,
+          color: Colors.white,
+          fontSize: 30,
         fontWeight: FontWeight.bold,
       ),
       elevation: 0,
     ),
     textTheme: TextTheme(
-      bodyLarge: TextStyle(
-        color: AppColors.blackColor,
-        fontSize: 10,
-        fontWeight: FontWeight.bold,
-      ),
-      bodyMedium: TextStyle(
-        color: AppColors.blackColor,
-        fontSize: 23,
+        titleLarge: GoogleFonts.elMessiri(
+          color: AppColors.whiteColor,
+          fontSize: 30,
+          fontWeight: FontWeight.bold,
+        ),
+        bodyMedium: GoogleFonts.elMessiri(
+          color: AppColors.whiteColor,
+          fontSize: 23,
         fontWeight: FontWeight.w700,
       ),
-      bodySmall: TextStyle(
-        color: AppColors.blackColor,
-        fontSize: 18,
+        bodySmall: GoogleFonts.elMessiri(
+          color: AppColors.yellowColor,
+          fontSize: 18,
+          fontWeight: FontWeight.w500,
+        ),
+        displaySmall: GoogleFonts.elMessiri(
+          color: AppColors.whiteColor,
+          fontSize: 18,
         fontWeight: FontWeight.w500,
       ),
     ),
@@ -94,5 +100,6 @@ class MyThemeData {
       ),
       unselectedIconTheme: IconThemeData(),
     ),
-  );
+      bottomSheetTheme:
+          BottomSheetThemeData(backgroundColor: AppColors.primaryDarkColor));
 }

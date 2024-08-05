@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:islami/colors_App.dart';
 import 'package:islami/quran/quran_details_view.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/app_config_provider.dart';
 import 'widget/sura_title_widget.dart';
 
 class QuranTap extends StatelessWidget {
@@ -124,11 +126,15 @@ class QuranTap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
+
     return Container(
       child: Column(children: [
         Image.asset('assets/images/Screenshot (1).png'),
         Divider(
-          color: AppColors.primaryLightColor,
+          color: provider.isDarkMode()
+              ? AppColors.yellowColor
+              : AppColors.primaryLightColor,
           thickness: 3,
         ),
         Row(
@@ -141,13 +147,15 @@ class QuranTap extends StatelessWidget {
               ),
             ),
             Container(
-              color: Theme.of(context).primaryColor,
+              color: provider.isDarkMode()
+                  ? AppColors.yellowColor
+                  : AppColors.primaryLightColor,
               width: 3,
               height: 50,
             ),
             Expanded(
               child: Text(
-                'اسم الصوره',
+                'اسم السوره',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
@@ -155,7 +163,9 @@ class QuranTap extends StatelessWidget {
           ],
         ),
         Divider(
-          color: AppColors.primaryLightColor,
+          color: provider.isDarkMode()
+              ? AppColors.yellowColor
+              : AppColors.primaryLightColor,
           thickness: 3,
         ),
         Expanded(

@@ -45,7 +45,9 @@ class _SettingsTapState extends State<SettingsTap> {
                           provider.applanguage == 'en'
                               ? AppLocalizations.of(context)!.english
                               : AppLocalizations.of(context)!.arabic,
-                          style: Theme.of(context).textTheme.bodySmall),
+                          style: provider.isDarkMode()
+                              ? Theme.of(context).textTheme.displaySmall
+                              : Theme.of(context).textTheme.bodySmall),
                       Icon(Icons.arrow_drop_down, size: 30)
                     ],
                   ),
@@ -62,7 +64,7 @@ class _SettingsTapState extends State<SettingsTap> {
             ),
             InkWell(
               onTap: () {
-                showLanguageBottomSheet();
+                showThemeBottomSheet();
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -78,7 +80,9 @@ class _SettingsTapState extends State<SettingsTap> {
                           provider.applanguage == 'en'
                               ? AppLocalizations.of(context)!.light
                               : AppLocalizations.of(context)!.dark,
-                          style: Theme.of(context).textTheme.bodySmall),
+                          style: provider.isDarkMode()
+                              ? Theme.of(context).textTheme.displaySmall
+                              : Theme.of(context).textTheme.bodySmall),
                       Icon(Icons.arrow_drop_down, size: 30)
                     ],
                   ),

@@ -2,6 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:islami/home/home_screen.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/app_config_provider.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -13,7 +16,7 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   void initState() {
     Timer(Duration(seconds: 2), () {
-      Navigator.pushNamed(context, HomeScreen.routeName);
+      Navigator.pushReplacementNamed(context, HomeScreen.routeName);
     });
 
     super.initState();
@@ -21,6 +24,10 @@ class _SplashViewState extends State<SplashView> {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset('assets/images/splash.png');
+    var provider = Provider.of<AppConfigProvider>(context);
+
+    return Image.asset(provider.isDarkMode()
+        ? 'assets/images/splash – dark- 1.png'
+        : 'assets/images/splash.png');
   }
 }
